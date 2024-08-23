@@ -3,7 +3,7 @@
     <div class="page-title">
         <div class="row m-3">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Add Barang</h3>
+                <h3>Edit Pegawai</h3>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="/pegawai/update/{{ $employee->id }}" method="POST">
+            <form action="/pegawai/update/{{ $employee->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group col-8">
                     <label>Kode Pegawai</label>
@@ -32,6 +32,16 @@
                     <label>Username</label>
                     <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
                         id="username" placeholder="Username" value="{{ $employee->username }}">
+                    @error('username')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group col-8">
+                    <label>Image</label>
+                    <input type="file" name="imagex" class="form-control @error('imagex') is-invalid @enderror"
+                        id="image" placeholder="Image" value="{{ $employee->image }}">
                     @error('username')
                         <div class="invalid-feedback">
                             {{ $message }}

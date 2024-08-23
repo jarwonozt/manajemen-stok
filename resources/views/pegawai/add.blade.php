@@ -15,7 +15,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="/pegawai/store" method="POST">
+            <form action="/pegawai/store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group col-8">
                     <label>Kode Pegawai</label>
@@ -43,6 +43,16 @@
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                         id="password" placeholder="Password" value="{{ old('password') }}">
                     @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group col-8">
+                    <label>Image</label>
+                    <input type="file" name="imagex" class="form-control @error('imagex') is-invalid @enderror"
+                        id="image" placeholder="Image">
+                    @error('username')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

@@ -48,11 +48,25 @@ class EmployeeController extends Controller
             'username' => 'required|unique:users',
             'password' => 'required',
             'role' => 'required',
+            'imagex' => 'required|image|mimes:jpeg,png,gif|max:2048',
         ]);
-        $validatedData['password'] = bcrypt($request->password);
+
+        if($request->imagex != null){
+            $imageName = time().'.'.$request->imagex->getClientOriginalExtension();
+            // $request->imagex->storeAs('images', $imageName);
+            $request->imagex->move('image',$imageName);
+        }
 
         if($validatedData){
-            User::create($validatedData);
+            User::create(
+                [
+                'kode_pegawai' => $request->kode_pegawai,
+                'username' => $request->username,
+                'password' => bcrypt($request->password),
+                'role' => $request->role,
+                'image' => $imageName ?? null,
+                ]
+            );
             Alert::success('Success', 'Data user berhasil ditambahkan');
             return redirect('/pegawai');
         } else {
@@ -93,14 +107,27 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd(Rule::unique('users')->ignore($request->id));
         $validatedData = $request->validate([
             'kode_pegawai' => ['required', Rule::unique('users')->ignore($request->id)],
             'username' => ['required', Rule::unique('users')->ignore($request->id)],
             'role' => 'required',
+            'imagex' => 'image|mimes:jpeg,png,gif|max:2048',
         ]);
 
+        if($request->imagex != null){
+            $imageName = time().'.'.$request->imagex->getClientOriginalExtension();
+            // $request->imagex->storeAs('images', $imageName);
+            $request->imagex->move('image',$imageName);
+        }
+
         if ($validatedData) {
-            User::where('id', $id)->update($validatedData);
+            User::where('id', $id)->update([
+                'kode_pegawai' => $request->kode_pegawai,
+                'username' => $request->username,
+                'role' => $request->role,
+                'image' => $imageName ?? null,
+            ]);
             Alert::success('Success', 'Data berhasil diupdate');
             return redirect('/pegawai');
         } else {

@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="user-img d-flex align-items-center">
                                             <div class="avatar avatar-md me-3">
-                                                <img src="../../template/dist/assets/images/faces/2.jpg"
+                                                <img src="{{ asset('image/'.auth()->user()->image) }}"
                                                     alt="" srcset="">
                                             </div>
                                         </div>
