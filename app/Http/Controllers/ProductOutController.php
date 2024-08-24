@@ -182,4 +182,20 @@ class ProductOutController extends Controller
         ProductOut::find($id)->delete();
         return back();
     }
+
+    public function filter(Request $request)
+    {
+        $start = $request->dari;
+        $end = $request->sampai;
+        $code = Code::first()->code;
+        $products = ProductOut::whereBetween('tanggal_keluar', [$start, $end])->get();
+        return view('barang_keluar.barang_keluar', compact('products', 'code'));
+    }
+
+    public function searchBK(Request $request)
+    {
+        $code = Code::first()->code;
+        $products = ProductOut::where('merk_barang', 'LIKE', '%'. $request->search.'%')->orderByDesc('id')->get();
+        return view('barang_keluar.barang_keluar', compact('products', 'code'));
+    }
 }

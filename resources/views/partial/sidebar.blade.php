@@ -120,6 +120,9 @@
                                     <li>
                                         <h6 class="dropdown-header">Hello, {{ auth()->user()->username }}!</h6>
                                     </li>
+                                    <li><a class="dropdown-item" href="/pegawai/edit/{{ auth()->user()->id }}"><i
+                                                class="icon-mid bi bi-gear me-2"></i>Setting</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="/logout"><i
                                                 class="icon-mid bi bi-box-arrow-left me-2"></i>Logout</a>
                                     </li>

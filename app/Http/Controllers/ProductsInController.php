@@ -166,4 +166,11 @@ class ProductsInController extends Controller
         $products = ProductsIn::whereBetween('tanggal_masuk', [$start, $end])->get();
         return view('barang_masuk.barang_masuk', compact('products', 'code'));
     }
+
+    public function searchBM(Request $request)
+    {
+        $code = Code::first()->code;
+        $products = ProductsIn::where('merk_barang', 'LIKE', '%'. $request->search.'%')->orderByDesc('id')->get();
+        return view('barang_masuk.barang_masuk', compact('products', 'code'));
+    }
 }

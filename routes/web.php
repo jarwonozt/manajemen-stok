@@ -113,8 +113,12 @@ Route::post('/code_verification/update', [CodeVerificationController::class, 'up
 
 // another
 Route::get('/merk_barang/{value}/ukuran', [ProductController::class, 'getUkuran'])->middleware('auth');
+Route::get('/search-stock', [ProductController::class, 'search'])->middleware('auth');
+Route::get('/search-data-bm', [ProductsInController::class, 'searchBM'])->middleware('auth');
 Route::get('/search-bm', [CetakPDFController::class, 'searchBM'])->middleware('auth');
+Route::get('/search-data-bk', [ProductOutController::class, 'searchBK'])->middleware('auth');
 Route::get('/search-bk', [CetakPDFController::class, 'searchBK'])->middleware('auth');
 Route::post('/filter', [ProductsInController::class, 'filter'])->middleware('auth');
+Route::post('/filter-bk', [ProductOutController::class, 'filter'])->middleware('auth');
 Route::post('/filter-laporan-bm', [CetakPDFController::class, 'filterBM'])->middleware('auth');
 Route::post('/filter-laporan-bk', [CetakPDFController::class, 'filterBK'])->middleware('auth');

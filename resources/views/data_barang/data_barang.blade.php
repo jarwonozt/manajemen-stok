@@ -21,6 +21,18 @@
                     <a href="/daftar_barang/add" class="btn btn-primary mt-3">Add Data</a>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <h4 class="card-title mx-4">Cari Produk</h4>
+                    <form action="/search-stock" method="get">
+                        <div class="form-group mx-4 col-4">
+                            <label for="">Nama Produk :</label>
+                            <input type="search" name="search" class="form-control">
+                        </div>
+                        <button type="submit" class="col-2 mx-4 btn btn-success" id="btn-filter">Cari</button>
+                    </form>
+                </div>
+            </div>
             <div class="card-content">
                 <div class="card-body">
                     <!-- Table with outer spacing -->

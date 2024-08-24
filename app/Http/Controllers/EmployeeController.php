@@ -126,7 +126,7 @@ class EmployeeController extends Controller
                 'kode_pegawai' => $request->kode_pegawai,
                 'username' => $request->username,
                 'role' => $request->role,
-                'image' => $imageName ?? null,
+                'image' => $imageName ?? auth()->user()->image,
             ]);
             Alert::success('Success', 'Data berhasil diupdate');
             return redirect('/pegawai');

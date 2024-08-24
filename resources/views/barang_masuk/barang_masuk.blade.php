@@ -22,21 +22,35 @@
                 <a href="/barang_masuk/add" class="btn btn-primary mt-3">Add Data Barang Masuk</a>
                 @endif
             </div>
-            <h4 class="card-title mx-4">Filter Tanggal</h4>
-            <form method="POST" action="/filter">
-                @csrf
-                <div class="d-flex">
-                    <div class="form-group mx-4 col-4">
-                        <label for="">Dari :</label>
-                        <input type="date" name="dari" id="dari" class="form-control">
-                    </div>
-                    <div class="form-group mx-4 col-4">
-                        <label for="">Sampai :</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control">
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <h4 class="card-title mx-4">Filter Tanggal</h4>
+                    <form method="POST" action="/filter">
+                        @csrf
+                        <div class="d-flex">
+                            <div class="form-group mx-4 col-4">
+                                <label for="">Dari :</label>
+                                <input type="date" name="dari" id="dari" class="form-control">
+                            </div>
+                            <div class="form-group mx-4 col-4">
+                                <label for="">Sampai :</label>
+                                <input type="date" name="sampai" id="sampai" class="form-control">
+                            </div>
+                        </div>
+                        <button type="submit" class="col-2 mx-4 btn btn-success" id="btn-filter">Filter</button>
+                    </form>
                 </div>
-                <button type="submit" class="col-2 mx-4 btn btn-success" id="btn-filter">Filter</button>
-            </form>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <h4 class="card-title mx-4">Cari Produk</h4>
+                    <form action="/search-data-bm" method="get">
+                        <div class="form-group mx-4 col-4">
+                            <label for="">Nama Produk :</label>
+                            <input type="search" name="search" class="form-control">
+                        </div>
+                        <button type="submit" class="col-2 mx-4 btn btn-success" id="btn-filter">Cari</button>
+                    </form>
+                </div>
+            </div>
             <div class="card-content">
                 <div class="card-body">
                     <!-- Table with outer spacing -->

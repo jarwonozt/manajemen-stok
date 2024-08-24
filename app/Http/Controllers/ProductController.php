@@ -157,4 +157,11 @@ class ProductController extends Controller
         $ukuran = Product::where('merk_barang', $value)->pluck('ukuran');
         return json_encode($ukuran);
     }
+
+    public function search(Request $request)
+    {
+        $code = Code::first()->code;
+        $products = Product::where('merk_barang', 'LIKE', '%'. $request->search.'%')->orderByDesc('id')->get();
+        return view('data_barang.data_barang', compact('products', 'code'));
+    }
 }
