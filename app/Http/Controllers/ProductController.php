@@ -130,10 +130,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::where('id', $id)->first();
-        $productsIn = ProductsIn::where('merk_barang', $product->merk_barang)
-        ->where('ukuran', $product->ukuran)->get();
-        $productOut = ProductOut::where('merk_barang', $product->merk_barang)
-        ->where('ukuran', $product->ukuran)->get();
+        $productsIn = ProductsIn::where('merk_barang', $product->merk_barang)->get();
+        // ->where('ukuran', $product->ukuran)->get();
+        $productOut = ProductOut::where('merk_barang', $product->merk_barang)->get();
+        // ->where('ukuran', $product->ukuran)->get();
         $cart = Cart::where('kode_barang', $product->kode_barang)->first();
 
         if($productsIn != null){

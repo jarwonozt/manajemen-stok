@@ -147,8 +147,8 @@ class ProductsInController extends Controller
     public function destroy($id)
     {
         $stokDiHapus = ProductsIn::where('id', $id)->first();
-        $stokBarang = Product::where('merk_barang', $stokDiHapus->merk_barang)
-        ->where('ukuran', $stokDiHapus->ukuran)->first();
+        $stokBarang = Product::where('merk_barang', $stokDiHapus->merk_barang)->first();
+        // ->where('ukuran', $stokDiHapus->ukuran)->first();
         $stokBarang->stok -= $stokDiHapus->jumlah_barang;
         Product::where('merk_barang', $stokBarang->merk_barang)
         ->where('ukuran', $stokBarang->ukuran)->update(['stok' => $stokBarang->stok]);
